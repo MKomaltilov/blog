@@ -12,17 +12,34 @@ class ArticlesOverviewPageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'articles/overview.html')
 
-    def test_articles_appears_on_page(self):
+    def test_published_articles_appears_on_page(self):
         user = User.objects.create(
             username='user',
             password='123'
         )
-        new_article = Article.objects.create(
-            title='Test article',
+        Article.objects.create(
+            title='first',
+            content='Test article content',
+            author=user,
+            is_published=True
+        )
+
+        Article.objects.create(
+            title='second',
             content='Test article content',
             author=user
         )
 
+        Article.objects.create(
+            title='second',
+            content='Test article content',
+            author=user,
+            is_published=True
+        )
+
         response = self.client.get('/')
-        print(response)
-        self.assertContains('Test article', response)
+
+        self.assertContains(response, 'first')
+        self.assertContains(response, 'third')
+
+        self.assertNotContains(response, 'second')

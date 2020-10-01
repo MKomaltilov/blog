@@ -1,5 +1,11 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Article(models.Model):
-    pass
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    author = models.ForeignKey(to=User, related_name='articles', on_delete=models.CASCADE)
+    is_published = models.BooleanField(default=False)

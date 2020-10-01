@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from blog.models import Article
+from blog.models import Article, Tag
 
 User = get_user_model()
 
@@ -25,3 +25,17 @@ class ArticleModelTest(TestCase):
         self.assertEqual(article.content, 'Test article content')
         self.assertEqual(article.author, user)
         self.assertFalse(article.is_published)
+
+
+class TagModelTest(TestCase):
+
+    def test_can_be_created(self):
+        Tag.objects.create(
+            name='test tag'
+        )
+
+        tag = Tag.objects.first()
+        uuid4_regexp = r'^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'
+
+        self.assertRegexpMatches(tag.id, uuid4_regexp)
+        self.assertEqual(tag.name, 'test tag')

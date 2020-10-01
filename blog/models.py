@@ -9,3 +9,7 @@ class Article(models.Model):
     content = models.TextField()
     author = models.ForeignKey(to=User, related_name='articles', on_delete=models.CASCADE)
     is_published = models.BooleanField(default=False)
+
+
+class Tag(models.Model):
+    pass

@@ -13,6 +13,9 @@ class Article(models.Model):
     is_published = models.BooleanField(default=False)
     tags = models.ManyToManyField(to='Tag', related_name='articles', blank=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Tag(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)

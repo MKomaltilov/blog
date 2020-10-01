@@ -31,7 +31,7 @@ class ArticlesOverviewPageTest(TestCase):
         )
 
         Article.objects.create(
-            title='second',
+            title='third',
             content='Test article content',
             author=user,
             is_published=True

@@ -26,6 +26,31 @@ class ArticleModelTest(TestCase):
         self.assertEqual(article.author, user)
         self.assertFalse(article.is_published)
 
+    def test_can_have_tags(self):
+        tag_one = Tag.objects.create(name='tag one')
+        tag_two = Tag.objects.create(name='tag two')
+        tag_three = Tag.objects.create(name='tag three')
+
+        user = User.objects.create(
+            username='user',
+            password='123'
+        )
+        new_article = Article.objects.create(
+            title='Test article',
+            content='Test article content',
+            author=user
+        )
+        new_article.tags.add(tag_one)
+        new_article.tags.add(tag_three)
+
+        created_article = Article.objects.first()
+        tags_in_article = created_article.tags.all()
+
+        self.assertIn(tag_one, tags_in_article)
+        self.assertIn(tag_three, tags_in_article)
+
+        self.assertNotIn(tag_two, tags_in_article)
+
 
 class TagModelTest(TestCase):
 

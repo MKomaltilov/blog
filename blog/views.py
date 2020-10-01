@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+from blog.models import Article
+
+
+class ArticlesView(ListView):
+    model = Article
+    queryset = Article.objects.all()
+    template_name = 'articles/overview.html'

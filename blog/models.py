@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -12,4 +14,5 @@ class Article(models.Model):
 
 
 class Tag(models.Model):
-    pass
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    name = models.CharField(max_length=255)

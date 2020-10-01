@@ -11,6 +11,7 @@ class Article(models.Model):
     content = models.TextField()
     author = models.ForeignKey(to=User, related_name='articles', on_delete=models.CASCADE)
     is_published = models.BooleanField(default=False)
+    tags = models.ManyToManyField(to='Tag', related_name='articles', blank=True)
 
 
 class Tag(models.Model):

@@ -51,6 +51,21 @@ class ArticleModelTest(TestCase):
 
         self.assertNotIn(tag_two, tags_in_article)
 
+    def test_str_shows_title(self):
+        user = User.objects.create(
+            username='user',
+            password='123'
+        )
+        Article.objects.create(
+            title='Test article',
+            content='Test article content',
+            author=user
+        )
+
+        article = Article.objects.first()
+
+        self.assertEqual(str(article), 'Test article')
+
 
 class TagModelTest(TestCase):
 

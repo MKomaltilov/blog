@@ -79,4 +79,5 @@ class ArticlesOverviewPageTest(TestCase):
 
         max_content = 'a' * 300
         self.assertContains(response, max_content)
+        self.assertNotContains(response, content)
 

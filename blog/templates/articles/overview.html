@@ -1,18 +1,17 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-<div class="list-group">
+<ul class="list-group">
     {% for article in article_list %}
-<div class="col-md-12">
-    <a href="/" class="list-group-item list-group-item-action">
-        <strong>{{ article.title }}</strong> - <i>12.02.2020</i> <br>
+
+    <li class="list-group-item list-group-item-action">
+        <a href="/" class="list-group-item-action"><strong>{{ article.title }}</strong> - <i>{{ article.publish_date }}</i></a> <br>
         {% for tag in article.tags.all %}
-            <a href="">{{ tag.name }}</a>
+            <a href="" class="badge badge-primary">{{ tag.name }}</a>
         {% endfor %}
-    </a>
-</div>
+    </li>
 {% empty %}
-</div>
+</ul>
 
 <p>Здесь будут отображаться статьи.</p>
 {% endfor %}

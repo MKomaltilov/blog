@@ -1,12 +1,16 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-
-{% for article in article_list %}
+<div class="list-group">
+    {% for article in article_list %}
 <div class="col-md-12">
-    <strong>{{ article.title }}</strong>
+    <a href="/" class="list-group-item list-group-item-action">
+        <strong>{{ article.title }}</strong> - <i>12.02.2020</i>
+    </a>
 </div>
 {% empty %}
+</div>
+
 <p>Здесь будут отображаться статьи.</p>
 {% endfor %}
 

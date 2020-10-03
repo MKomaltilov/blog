@@ -47,6 +47,35 @@ class ArticleModelTest(TestCase):
 
         self.assertEqual(str(article), 'Test article')
 
+    def test_have_a_publish_date_and_sorted_by_this_field(self):
+        Article.objects.create(
+            title='Test article',
+            content='Test article content'
+        )
+        Article.objects.create(
+            title='Test article 2',
+            content='Test article content'
+        )
+        Article.objects.create(
+            title='Test article 3',
+            content='Test article content'
+        )
+        Article.objects.create(
+            title='Test article 4',
+            content='Test article content'
+        )
+
+        articles = Article.objects.all()
+
+        self.assertEqual(articles[0].title, 'Test article 4')
+        self.assertIsNotNone(articles[0].publish_date)
+        self.assertEqual(articles[1].title, 'Test article 3')
+        self.assertIsNotNone(articles[1].publish_date)
+        self.assertEqual(articles[2].title, 'Test article 2')
+        self.assertIsNotNone(articles[2].publish_date)
+        self.assertEqual(articles[3].title, 'Test article 1')
+        self.assertIsNotNone(articles[3].publish_date)
+
 
 class TagModelTest(TestCase):
 

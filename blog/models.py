@@ -1,3 +1,4 @@
+from django.utils.timezone import now
 from uuid import uuid4
 
 from django.db import models
@@ -8,7 +9,7 @@ class Article(models.Model):
     content = models.TextField()
     is_published = models.BooleanField(default=False)
     tags = models.ManyToManyField(to='Tag', related_name='articles', blank=True)
-    publish_date = models.DateTimeField(auto_now_add=True)
+    publish_date = models.DateTimeField(default=now)
 
     def __str__(self):
         return self.title

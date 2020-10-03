@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.db import IntegrityError, transaction
 
 from blog.models import Article, Tag
 
@@ -98,3 +99,19 @@ class TagModelTest(TestCase):
         tag = Tag.objects.first()
 
         self.assertEqual(str(tag), 'test tag')
+
+    def test_name_is_unique_field(self):
+        Tag.objects.create(
+            name='test tag'
+        )
+
+        try:
+            with transaction.atomic():
+                Tag.objects.create(
+                    name='test tag'
+                )
+        except IntegrityError:
+            pass
+
+        tags_amount = Tag.objects.count()
+        self.assertEqual(tags_amount, 1)

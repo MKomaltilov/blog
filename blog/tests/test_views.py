@@ -51,7 +51,7 @@ class ArticlesOverviewPageTest(TestCase):
 
         self.assertContains(response, 'first')
         self.assertContains(response, 'tag one')
-        self.assertContains(response, 'tag_three')
+        self.assertContains(response, 'tag three')
 
         self.assertNotContains(response, 'tag two')
 

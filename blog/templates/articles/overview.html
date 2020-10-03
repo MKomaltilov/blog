@@ -5,7 +5,10 @@
     {% for article in article_list %}
 <div class="col-md-12">
     <a href="/" class="list-group-item list-group-item-action">
-        <strong>{{ article.title }}</strong> - <i>12.02.2020</i>
+        <strong>{{ article.title }}</strong> - <i>12.02.2020</i> <br>
+        {% for tag in article.tags.all %}
+            <a href="">{{ tag.name }}</a>
+        {% endfor %}
     </a>
 </div>
 {% empty %}

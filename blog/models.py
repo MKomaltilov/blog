@@ -8,9 +8,13 @@ class Article(models.Model):
     content = models.TextField()
     is_published = models.BooleanField(default=False)
     tags = models.ManyToManyField(to='Tag', related_name='articles', blank=True)
+    publish_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['-publish_date']
 
 
 class Tag(models.Model):

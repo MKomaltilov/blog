@@ -49,7 +49,7 @@ class ArticleModelTest(TestCase):
 
     def test_have_a_publish_date_and_sorted_by_this_field(self):
         Article.objects.create(
-            title='Test article',
+            title='Test article 1',
             content='Test article content'
         )
         Article.objects.create(

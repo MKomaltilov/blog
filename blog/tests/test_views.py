@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from blog.models import Article
+from blog.models import Article, Tag
 
 
 class ArticlesOverviewPageTest(TestCase):
@@ -33,3 +33,26 @@ class ArticlesOverviewPageTest(TestCase):
         self.assertContains(response, 'third')
 
         self.assertNotContains(response, 'second')
+
+    def test_tags_for_article_exists_on_page(self):
+        article = Article.objects.create(
+            title='first',
+            content='Test article content',
+            is_published=True
+        )
+        tag_one = Tag.objects.create(name='tag one')
+        tag_two = Tag.objects.create(name='tag two')
+        tag_three = Tag.objects.create(name='tag three')
+
+        article.tags.add(tag_one)
+        article.tags.add(tag_three)
+
+        response = self.client.get('/')
+
+        self.assertContains(response, 'first')
+        self.assertContains(response, 'tag one')
+        self.assertContains(response, 'tag_three')
+
+        self.assertNotContains(response, 'tag two')
+
+

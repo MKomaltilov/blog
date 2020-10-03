@@ -89,3 +89,12 @@ class TagModelTest(TestCase):
 
         self.assertRegexpMatches(str(tag.id), uuid4_regexp)
         self.assertEqual(tag.name, 'test tag')
+
+    def test_str_shows_name(self):
+        Tag.objects.create(
+            name='test tag'
+        )
+
+        tag = Tag.objects.first()
+
+        self.assertEqual(str(tag), 'test tag')

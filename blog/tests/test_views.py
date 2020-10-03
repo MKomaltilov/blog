@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+from django.utils.timezone import now
 from blog.models import Article, Tag
 
 
@@ -55,4 +55,28 @@ class ArticlesOverviewPageTest(TestCase):
 
         self.assertNotContains(response, 'tag two')
 
+    def test_shows_publish_date_in_right_format(self):
+        datetime_now = now()
+        Article.objects.create(
+            title='first',
+            content='Test article content',
+            is_published=True,
+            publish_date=datetime_now
+        )
+
+        response = self.client.get('/')
+        self.assertContains(response, datetime_now.strftime("%d.%m.%Y %H:%M"))
+
+    def test_shows_content_not_more_than_300_symbols(self):
+        content = 'a' * 500
+        Article.objects.create(
+            title='first',
+            content=content,
+            is_published=True
+        )
+
+        response = self.client.get('/')
+
+        max_content = 'a' * 300
+        self.assertContains(response, max_content)
 

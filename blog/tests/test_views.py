@@ -81,3 +81,15 @@ class ArticlesOverviewPageTest(TestCase):
         self.assertContains(response, max_content)
         self.assertNotContains(response, content)
 
+
+class ArticlePageTest(TestCase):
+
+    def test_returns_correct_template(self):
+        article = Article.objects.create(
+            title='first',
+            content='content',
+            is_published=True
+        )
+        response = self.client.get(f'/blog/articles/{article.id}')
+
+        self.assertTemplateUsed(response, 'articles/article.html')

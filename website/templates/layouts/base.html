@@ -11,32 +11,43 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="/" class="navbar-brand"></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span href="/" class="navbar-brand">mkomaltilov</span>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <ul class="navbar-nav">
-                <li>
-                    <a class="nav-item nav-link" href="/">БЛОГ</a>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="/">ПРОЕКТЫ</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-
-    <div class="container" id="content">
-
-        {% block content %}{% endblock content %}
+        <ul class="navbar-nav">
+            <li>
+                <a class="nav-item nav-link" href="/">БЛОГ</a>
+            </li>
+            <li>
+                <a class="nav-item nav-link" href="/">ПРОЕКТЫ</a>
+            </li>
+            <li>
+                <a class="nav-item nav-link" href="/">КОНТАКТЫ</a>
+            </li>
+        </ul>
     </div>
+</nav>
+
+
+<div class="container mt-3" id="content">
+    <div class="row">
+        <div class="col-md-8 shadow">{% block content %}{% endblock content %}</div>
+        <div class="col-md-3 mx-3 pt-3 shadow">
+            <img src="{% static 'images/main_photo.jpg' %}" class="img-thumbnail">
+            <p class="mt-3">
+                Добро пожаловать на мой персональный блог! Здесь вы сможете найти статьи на различные интересные мне тематики, а также проекты, которыми я занимаюсь.
+                Большая часть из них является open-source.
+            </p>
+        </div>
+    </div>
+</div>
 
 
 </body>

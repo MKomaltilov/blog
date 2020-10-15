@@ -1,8 +1,8 @@
 body {
-    background-color: #ffffff;
+    background-color: #eeeeee;
 }
 
-#content {
+#content > div > div {
     background-color: #ffffff;
     height: 100vh;
 }

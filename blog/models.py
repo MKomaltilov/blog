@@ -1,12 +1,13 @@
 from django.utils.timezone import now
 from uuid import uuid4
+from ckeditor.fields import RichTextField
 
 from django.db import models
 
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = RichTextField()
     is_published = models.BooleanField(default=False)
     tags = models.ManyToManyField(to='Tag', related_name='articles', blank=True)
     publish_date = models.DateTimeField(default=now)

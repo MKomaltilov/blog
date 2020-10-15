@@ -13,7 +13,7 @@
         <a href="" class="badge badge-primary">{{ tag.name }}</a>
         {% endfor %}
         <br>
-        {{ article.content|truncatechars:301 }}
+        {{ article.content|truncatechars:301|safe }}
         <br>
         <a href="">read more...</a>
     </li>

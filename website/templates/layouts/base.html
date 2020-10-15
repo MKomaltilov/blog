@@ -23,32 +23,36 @@
 
         <ul class="navbar-nav">
             <li>
-                <a class="nav-item nav-link" href="/">БЛОГ</a>
+                <a class="nav-item nav-link" href="/blog/">БЛОГ</a>
             </li>
             <li>
-                <a class="nav-item nav-link" href="/">ПРОЕКТЫ</a>
+                <a class="nav-item nav-link" href="/projects/">ПРОЕКТЫ</a>
             </li>
             <li>
-                <a class="nav-item nav-link" href="/">КОНТАКТЫ</a>
+                <a class="nav-item nav-link" href="/contacts/">КОНТАКТЫ</a>
             </li>
         </ul>
     </div>
 </nav>
 
 
-<div class="container mt-3" id="content">
+<div class="container-fluid" id="content">
     <div class="row">
-        <div class="col-md-8 shadow">{% block content %}{% endblock content %}</div>
-        <div class="col-md-3 mx-3 pt-3 shadow">
+        <div class="col-md-9">{% block content %}{% endblock content %}</div>
+        <div class="col-md-3 pt-3 bg-light shadow">
             <img src="{% static 'images/main_photo.jpg' %}" class="img-thumbnail">
             <p class="mt-3">
-                Добро пожаловать на мой персональный блог! Здесь вы сможете найти статьи на различные интересные мне тематики, а также проекты, которыми я занимаюсь.
+                Добро пожаловать на мой персональный блог!
+                <br>
+                Здесь вы сможете найти статьи на различные интересные мне тематики, а также проекты, которыми я занимаюсь.
                 Большая часть из них является open-source.
             </p>
         </div>
     </div>
 </div>
 
-
+<footer class="footer py-3">
+    <p style="text-align: center">© Марат Комалтилов, {% now "Y" %}</p>
+</footer>
 </body>
 </html>

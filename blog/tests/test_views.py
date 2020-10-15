@@ -93,3 +93,14 @@ class ArticlePageTest(TestCase):
         response = self.client.get(f'/blog/articles/{article.id}')
 
         self.assertTemplateUsed(response, 'articles/article.html')
+
+    def test_contains_data(self):
+        article = Article.objects.create(
+            title='first',
+            content='content',
+            is_published=True
+        )
+        response = self.client.get(f'/blog/articles/{article.id}')
+
+        self.assertContains(response, 'first')
+        self.assertContains(response, 'content')

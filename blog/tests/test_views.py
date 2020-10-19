@@ -104,3 +104,14 @@ class ArticlePageTest(TestCase):
 
         self.assertContains(response, 'first')
         self.assertContains(response, 'content')
+
+
+class TagPageTest(TestCase):
+
+    def test_returns_correct_template(self):
+        tag = Tag.objects.create(
+            name='test'
+        )
+        response = self.client.get(f'/blog/tags/{tag.id}')
+
+        self.assertTemplateUsed(response, 'tags/tag.html')

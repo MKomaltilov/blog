@@ -10,7 +10,7 @@
         <br>
 
         {% for tag in article.tags.all %}
-        <a href="" class="badge badge-primary">{{ tag.name }}</a>
+        <a href="/blog/tags/{{ tag.id }}" class="badge badge-primary">{{ tag.name }}</a>
         {% endfor %}
         <br>
         {{ article.content|truncatechars:301|safe }}

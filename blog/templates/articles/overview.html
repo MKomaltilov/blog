@@ -4,7 +4,7 @@
 <ul class="list-group pt-3">
     {% for article in article_list %}
     <li class="list-group-item list-group-item-action">
-        <a href="/" class="list-group-item-action"><strong>{{ article.title }}</strong></a>
+        <a href="/blog/articles/{{ article.id }}" class="list-group-item-action"><strong>{{ article.title }}</strong></a>
         <br>
         <small><i>{{ article.publish_date|date:"d.m.Y H:i" }}</i></small>
         <br>
@@ -15,7 +15,7 @@
         <br>
         {{ article.content|truncatechars:301|safe }}
         <br>
-        <a href="">read more...</a>
+        <a href="/blog/articles/{{ article.id }}">читать далее...</a>
     </li>
     {% empty %}
 

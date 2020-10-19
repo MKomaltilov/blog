@@ -1,8 +1,14 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
+<br>
+<h1>{{ article.title }}</h1>
+<i>{{ article.publish_date|date:"d.m.Y H:i" }}</i><br>
 
-{{ article.title }}
+{% for tag in article.tags.all %}
+<a href="" class="badge badge-primary">{{ tag.name }}</a>
+{% endfor %}
+<br>
 <br>
 {{ article.content|safe }}
 {% endblock content %}
